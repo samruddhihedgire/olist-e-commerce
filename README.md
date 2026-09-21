@@ -38,8 +38,8 @@ Power BI / Analytics
 
 ```text
 olist-ecommerce-project/
-├── data/
-│   └── raw/                     # Source CSV files
+|
+│          # Source CSV files
 │
 ├── olist_analytics_dbt/
 │   ├── models/
