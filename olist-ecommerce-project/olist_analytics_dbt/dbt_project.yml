@@ -1,0 +1,19 @@
+# Name of the dbt project
+name: 'olist_analytics_dbt'
+version: '1.0.0'
+
+# Profile used by this project
+profile: 'olist_analytics_dbt'
+
+# Locations of different dbt resources
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Directories removed when running dbt clean
+clean-targets:
+  - "target"
+  - "dbt_packages"

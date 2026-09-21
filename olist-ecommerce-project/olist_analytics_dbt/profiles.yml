@@ -1,0 +1,13 @@
+olist_analytics_dbt:
+  target: dev
+
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      port: 3306
+      username: root
+      password: Root
+      schema: olist_analytics
+      database: olist_analytics
+      threads: 1

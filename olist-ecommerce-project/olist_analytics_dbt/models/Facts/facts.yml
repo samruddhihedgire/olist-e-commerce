@@ -1,0 +1,73 @@
+version: 2
+
+models:
+
+  - name: fct_orders
+    description: "Order-level fact table containing order status, dates, customer information, and delivery metrics."
+    columns:
+      - name: order_id
+        description: "Unique identifier of the order."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+
+      - name: order_status
+        description: "Current status of the order."
+
+      - name: order_purchase_timestamp
+        description: "Timestamp when the order was purchased."
+
+      - name: order_approved_at
+        description: "Timestamp when the payment was approved."
+
+      - name: order_delivered_carrier_date
+        description: "Date when the order was handed to the carrier."
+
+      - name: order_delivered_customer_date
+        description: "Date when the order was delivered to the customer."
+
+      - name: order_estimated_delivery_date
+        description: "Estimated delivery date."
+
+      - name: delivery_days
+        description: "Number of days required to deliver the order."
+
+      - name: delivery_delay_days
+        description: "Number of days the actual delivery differed from the estimated delivery."
+
+
+  - name: fct_order_items
+    description: "Item-level fact table containing sales, product, seller, customer, and order information."
+    columns:
+      - name: order_id
+        description: "Unique identifier of the order."
+
+      - name: order_item_id
+        description: "Sequential item number within an order."
+
+      - name: product_id
+        description: "Unique identifier of the product."
+
+      - name: seller_id
+        description: "Unique identifier of the seller."
+
+      - name: customer_id
+        description: "Identifier of the customer."
+
+      - name: product_category_name
+        description: "Product category."
+
+      - name: product_category_name_english
+        description: "Product category translated into English."
+
+      - name: price
+        description: "Selling price of the product item."
+
+      - name: freight_value
+        description: "Freight charge associated with the item."
+
+      - name: total_item_value
+        description: "Total value of the item including applicable freight."

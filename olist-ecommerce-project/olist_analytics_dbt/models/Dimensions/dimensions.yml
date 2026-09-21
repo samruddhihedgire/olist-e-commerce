@@ -1,0 +1,84 @@
+version: 2
+
+models:
+
+  - name: dim_date
+    description: "Date dimension used for analyzing orders over time."
+    columns:
+      - name: date
+        description: "Calendar date."
+
+      - name: year
+        description: "Calendar year."
+
+      - name: month
+        description: "Month number."
+
+      - name: month_name
+        description: "Month name."
+
+      - name: quarter
+        description: "Calendar quarter."
+
+      - name: day
+        description: "Day of the month."
+
+      - name: day_name
+        description: "Day name."
+
+      - name: week
+        description: "Week number."
+
+
+  - name: dim_product
+    description: "Product dimension containing product attributes and translated categories."
+    columns:
+      - name: product_id
+        description: "Unique identifier of the product."
+
+      - name: product_category_name
+        description: "Product category in Portuguese."
+
+      - name: product_category_name_english
+        description: "Product category translated into English."
+
+      - name: product_weight_g
+        description: "Product weight in grams."
+
+      - name: product_length_cm
+        description: "Product length in centimeters."
+
+      - name: product_height_cm
+        description: "Product height in centimeters."
+
+      - name: product_width_cm
+        description: "Product width in centimeters."
+
+
+  - name: dim_seller
+    description: "Seller dimension containing seller location information."
+    columns:
+      - name: seller_id
+        description: "Unique identifier of the seller."
+
+      - name: seller_zip_code_prefix
+        description: "First five digits of the seller postal code."
+
+      - name: seller_city
+        description: "Seller city."
+
+      - name: seller_state
+        description: "Seller Brazilian state."
+
+
+  - name: dim_customer
+    description: "Customer dimension containing customer identity and location information."
+    columns:
+      - name: customer_unique_id
+        description: "Unique identifier of the customer."
+
+      - name: customer_city
+        description: "Customer city."
+
+      - name: customer_state
+        description: "Customer Brazilian state."

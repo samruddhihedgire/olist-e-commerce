@@ -1,0 +1,187 @@
+version: 2
+
+models:
+
+  - name: stg_customers
+    description: "Cleaned customer data from the Olist raw customers table."
+    columns:
+      - name: customer_id
+        description: "Unique identifier of the customer."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_unique_id
+        description: "Unique identifier representing the customer across orders."
+
+      - name: customer_zip_code_prefix
+        description: "First five digits of the customer's postal code."
+
+      - name: customer_city
+        description: "City where the customer is located."
+
+      - name: customer_state
+        description: "Brazilian state where the customer is located."
+
+
+  - name: stg_orders
+    description: "Cleaned order-level data containing order status and important order dates."
+    columns:
+      - name: order_id
+        description: "Unique identifier of the order."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Identifier of the customer who placed the order."
+
+      - name: order_status
+        description: "Current status of the order."
+
+      - name: order_purchase_timestamp
+        description: "Timestamp when the order was purchased."
+
+      - name: order_approved_at
+        description: "Timestamp when the payment was approved."
+
+      - name: order_delivered_carrier_date
+        description: "Timestamp when the order was handed to the carrier."
+
+      - name: order_delivered_customer_date
+        description: "Timestamp when the order was delivered to the customer."
+
+      - name: order_estimated_delivery_date
+        description: "Estimated delivery date provided to the customer."
+
+
+  - name: stg_order_items
+    description: "Cleaned item-level information for products included in orders."
+    columns:
+      - name: order_id
+        description: "Identifier of the order containing the item."
+
+      - name: order_item_id
+        description: "Sequential item number within an order."
+
+      - name: product_id
+        description: "Identifier of the product."
+
+      - name: seller_id
+        description: "Identifier of the seller."
+
+      - name: shipping_limit_date
+        description: "Deadline by which the seller should ship the item."
+
+      - name: price
+        description: "Price of the product item."
+
+      - name: freight_value
+        description: "Freight or shipping charge associated with the item."
+
+
+  - name: stg_order_payments
+    description: "Cleaned payment information associated with Olist orders."
+    columns:
+      - name: order_id
+        description: "Identifier of the order."
+
+      - name: payment_sequential
+        description: "Sequence number of the payment within an order."
+
+      - name: payment_type
+        description: "Payment method used for the order."
+
+      - name: payment_installments
+        description: "Number of installments used for the payment."
+
+      - name: payment_value
+        description: "Total monetary value of the payment."
+
+
+  - name: stg_order_reviews
+    description: "Cleaned customer review information for orders."
+    columns:
+      - name: review_id
+        description: "Unique identifier of the review."
+
+      - name: order_id
+        description: "Identifier of the reviewed order."
+
+      - name: review_score
+        description: "Customer rating given to the order, from 1 to 5."
+
+      - name: review_comment_title
+        description: "Title of the customer's review."
+
+      - name: review_comment_message
+        description: "Text of the customer's review."
+
+      - name: review_creation_date
+        description: "Date when the review was created."
+
+      - name: review_answer_timestamp
+        description: "Timestamp when the review was answered."
+
+
+  - name: stg_products
+    description: "Cleaned product information including category and physical dimensions."
+    columns:
+      - name: product_id
+        description: "Unique identifier of the product."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_category_name
+        description: "Original product category name."
+
+      - name: product_name_lenght
+        description: "Number of characters in the product name."
+
+      - name: product_description_lenght
+        description: "Number of characters in the product description."
+
+      - name: product_photos_qty
+        description: "Number of photos associated with the product."
+
+      - name: product_weight_g
+        description: "Product weight in grams."
+
+      - name: product_length_cm
+        description: "Product length in centimeters."
+
+      - name: product_height_cm
+        description: "Product height in centimeters."
+
+      - name: product_width_cm
+        description: "Product width in centimeters."
+
+
+  - name: stg_sellers
+    description: "Cleaned seller information from the Olist seller dataset."
+    columns:
+      - name: seller_id
+        description: "Unique identifier of the seller."
+        tests:
+          - not_null
+          - unique
+
+      - name: seller_zip_code_prefix
+        description: "First five digits of the seller's postal code."
+
+      - name: seller_city
+        description: "City where the seller is located."
+
+      - name: seller_state
+        description: "Brazilian state where the seller is located."
+
+
+  - name: stg_category_translation
+    description: "Translation mapping between Portuguese product categories and English category names."
+    columns:
+      - name: product_category_name
+        description: "Product category name in Portuguese."
+
+      - name: product_category_name_english
+        description: "Product category name translated into English."
